@@ -1,13 +1,18 @@
 [versions]
-agp = "8.1.1"
-org-jetbrains-kotlin-android = "1.9.0"
-core-ktx = "1.9.0"
+agp = "8.2.1"
+org-jetbrains-kotlin-android = "1.9.22"
+core-ktx = "1.12.0"
 junit = "4.13.2"
 androidx-test-ext-junit = "1.1.5"
 espresso-core = "3.5.1"
 appcompat = "1.6.1"
 material = "1.11.0"
 constraintlayout = "2.1.4"
+dagger-hilt = "2.48.1"
+google-ksp = "1.9.22-1.0.16"
+android-lifecycle = "2.6.2"
+android-lifecycle-extensions = "2.2.0"
+androidx-activity = "1.8.2"
 
 [libraries]
 core-ktx = { group = "androidx.core", name = "core-ktx", version.ref = "core-ktx" }
@@ -17,10 +22,21 @@ espresso-core = { group = "androidx.test.espresso", name = "espresso-core", vers
 appcompat = { group = "androidx.appcompat", name = "appcompat", version.ref = "appcompat" }
 material = { group = "com.google.android.material", name = "material", version.ref = "material" }
 constraintlayout = { group = "androidx.constraintlayout", name = "constraintlayout", version.ref = "constraintlayout" }
+dagger-hilt = { group = "com.google.dagger", name = "hilt-android", version.ref = "dagger-hilt" }
+dagger-hilt-compiler = { group = "com.google.dagger", name = "hilt-compiler", version.ref = "dagger-hilt" }
+androidx_lifecycle_livedata = { group = "androidx.lifecycle", name = "lifecycle-livedata-ktx", version.ref = "android-lifecycle" }
+androidx_lifecycle_viewmodel = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "android-lifecycle" }
+androidx_lifecycle_runtime = { group = "androidx.lifecycle", name = "lifecycle-runtime-ktx", version.ref = "android-lifecycle" }
+androidx_lifecycle_extensions = { group = "androidx.lifecycle", name = "lifecycle-extensions", version.ref = "android-lifecycle-extensions" }
+androidx_activity = { group = "androidx.activity", name = "activity-ktx", version.ref = "androidx-activity" }
 
 [plugins]
 com-android-application = { id = "com.android.application", version.ref = "agp" }
 org-jetbrains-kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "org-jetbrains-kotlin-android" }
+android-library = { id = "com.android.library", version.ref = "agp" }
+dagger-hilt = { id = "com.google.dagger.hilt.android", version.ref = "dagger-hilt" }
+google-ksp = { id = "com.google.devtools.ksp", version.ref = "google-ksp" }
+kotlin-parcelize = { id = "org.jetbrains.kotlin.plugin.parcelize", version.ref = "org-jetbrains-kotlin-android" }
 
 [bundles]
 

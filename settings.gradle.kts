@@ -15,4 +15,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Arch Scaffold"
 include(":app")
- 
+include(":domain")
+include(":ui")

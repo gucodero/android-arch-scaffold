@@ -7,6 +7,7 @@ sealed class DataResult<out T> {
     open class Error(
         val code: String? = null,
         val message: String? = null,
+        val body: String? = null,
         val cause: Throwable? = null
     ): DataResult<Nothing>()
 }

@@ -62,4 +62,12 @@
             tools:ignore="HardcodedText" />
     </LinearLayout>
 
+    <com.google.android.material.button.MaterialButton
+        android:id="@+id/btnGetNewPeople"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New people"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -20,12 +20,16 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
         val btnMinus = findViewById<Button>(R.id.btnMinus)
         val btnPlus = findViewById<Button>(R.id.btnPlus)
+        val btnNewPeople = findViewById<Button>(R.id.btnGetNewPeople)
         val tvCounter = findViewById<TextView>(R.id.tvCounter)
         btnPlus.setOnClickListener {
             viewModel.onIncrement()
         }
         btnMinus.setOnClickListener {
             viewModel.onDecrement()
+        }
+        btnNewPeople.setOnClickListener {
+            viewModel.getNewPeople()
         }
         onUIState(
             viewModel = viewModel,
@@ -44,6 +48,16 @@ class MainActivity : AppCompatActivity() {
                         .setTitle("Error")
                         .setMessage("No se puede decrementar mas")
                         .setPositiveButton("Ok") { dialog, _ ->
+                            dialog.dismiss()
+                        }
+                        .create()
+                        .show()
+                }
+                is MainUIEvent.People -> {
+                    AlertDialog.Builder(this)
+                        .setTitle("People")
+                        .setMessage(it.data)
+                        .setPositiveButton("Close") { dialog, _ ->
                             dialog.dismiss()
                         }
                         .create()

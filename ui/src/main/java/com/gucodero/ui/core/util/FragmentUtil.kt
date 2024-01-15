@@ -1,13 +1,17 @@
 package com.gucodero.ui.core.util
 
 import androidx.annotation.IdRes
+import androidx.core.os.bundleOf
+import androidx.fragment.app.DialogFragment
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.*
 import androidx.navigation.NavDirections
 import androidx.navigation.fragment.findNavController
+import com.google.android.material.R
 import kotlinx.coroutines.*
 import kotlin.coroutines.CoroutineContext
 import kotlin.coroutines.EmptyCoroutineContext
+import kotlin.properties.ReadOnlyProperty
 
 fun Fragment.navigate(directions: NavDirections) {
     repeatOnResumed {
@@ -65,4 +69,32 @@ fun Fragment.launch(
         block = block,
         context = context
     )
+}
+
+fun <T: DialogFragment> T.isCancelable(isCancelable: Boolean): T {
+    this.isCancelable = isCancelable
+    return this
+}
+
+fun <T: DialogFragment> T.fullscreen(): T {
+    setStyle(
+        DialogFragment.STYLE_NORMAL,
+        R.style.ShapeAppearanceOverlay_MaterialComponents_MaterialCalendar_Window_Fullscreen
+    )
+    return this
+}
+
+fun <T: Fragment> T.putArgs(vararg pairs: Pair<String, Any?>): T {
+    arguments = bundleOf(*pairs)
+    return this
+}
+
+fun <T> argument(
+    key: String,
+    defaultValue: T? = null
+): ReadOnlyProperty<Fragment, T> {
+    return ReadOnlyProperty { thisRef, _ ->
+        @Suppress("UNCHECKED_CAST")
+        (thisRef.arguments?.get(key) ?: defaultValue) as T
+    }
 }

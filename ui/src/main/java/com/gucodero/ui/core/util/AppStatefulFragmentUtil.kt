@@ -39,10 +39,11 @@ private class AppViewModelsLazy<V: ViewModel>(
 
 fun <V: ViewModel> AppStatefulFragment<V>.appViewModels(): Lazy<V> {
     if (this is Fragment) {
+        val creator = getViewModelCreator()
         return AppViewModelsLazy(
             fragment = this,
-            storeOwner = storeOwner,
-            clazz = clazz
+            storeOwner = creator.store,
+            clazz = creator.clazz
         )
     } else {
         throw notIsFragmentException

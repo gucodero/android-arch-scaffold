@@ -1,9 +1,10 @@
 package com.gucodero.ui.core.fragment
 
 import androidx.lifecycle.ViewModel
-import kotlin.reflect.KClass
+import com.gucodero.ui.core.entity.ViewModelCreator
 
 interface AppStatefulFragment<V: ViewModel> {
-    val clazz: KClass<V>
-    val storeOwner: Int?
+
+    fun getViewModelCreator(): ViewModelCreator<V>
+
 }

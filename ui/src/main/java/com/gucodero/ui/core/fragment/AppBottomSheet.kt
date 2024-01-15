@@ -8,15 +8,9 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.gucodero.ui.core.util.navigate
 import com.gucodero.ui.core.util.onBackPressedCallback
 
-abstract class AppBottomSheet(
-    isCancelable: Boolean = true
-): BottomSheetDialogFragment() {
+abstract class AppBottomSheet: BottomSheetDialogFragment() {
 
     private val onBackPressedCallback by onBackPressedCallback()
-
-    init {
-        this.isCancelable = isCancelable
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

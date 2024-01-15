@@ -7,15 +7,9 @@ import androidx.navigation.NavDirections
 import com.gucodero.ui.core.util.navigate
 import com.gucodero.ui.core.util.onBackPressedCallback
 
-abstract class AppDialog(
-    isCancelable: Boolean = true
-): DialogFragment() {
+abstract class AppDialog: DialogFragment() {
 
     private val onBackPressedCallback by onBackPressedCallback()
-
-    init {
-        this.isCancelable = isCancelable
-    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)

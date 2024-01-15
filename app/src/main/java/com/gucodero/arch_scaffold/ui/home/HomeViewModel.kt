@@ -1,4 +1,4 @@
-package com.gucodero.arch_scaffold
+package com.gucodero.arch_scaffold.ui.home
 
 import androidx.lifecycle.SavedStateHandle
 import com.gucodero.data.common.util.safeApiCall
@@ -12,15 +12,15 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class MainViewModel @Inject constructor(
-    savedStateHandler: SavedStateHandle,
+class HomeViewModel @Inject constructor(
+    //savedStateHandler: SavedStateHandle,
     private val counterUC: CounterUC,
     private val peopleApi: PeopleApi
-): StatefulViewModel<MainUIState, MainUIEvent>(
+): StatefulViewModel<HomeUIState, HomeUIEvent>(
     defaultUIState = {
-        MainUIState()
+        HomeUIState()
     },
-    savedStateHandler = savedStateHandler
+    //savedStateHandler = savedStateHandler
 ) {
 
     fun getNewPeople() = launch {
@@ -28,7 +28,7 @@ class MainViewModel @Inject constructor(
             peopleApi.getPerson()
         }
         result.ifSuccessful {
-            MainUIEvent.People(
+            HomeUIEvent.People(
                 data = it.toString()
             ).send()
         }
@@ -52,7 +52,7 @@ class MainViewModel @Inject constructor(
                 }
             }
             is CounterUC.Result.DecrementNotValid -> {
-                MainUIEvent.DecrementNotValid.send()
+                HomeUIEvent.DecrementNotValid.send()
             }
         }
     }

@@ -2,6 +2,8 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
+    alias(libs.plugins.google.ksp)
+    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -24,17 +26,24 @@ android {
             )
         }
     }
+    buildFeatures {
+        dataBinding = true
+        compose = true
+    }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
-
+    implementation(kotlin("reflect"))
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
@@ -44,7 +53,24 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
+    implementation(libs.dagger.hilt.navigation)
+    val composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.compose.livedata)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.constraint)
+    implementation(libs.androidx.fragment)
+    debugImplementation(libs.compose.ui.tooling)
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.compose.ui.test.manifest)
+    implementation(libs.compose.material3.windows.size)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    implementation(libs.dagger.hilt)
+    ksp(libs.dagger.hilt.compiler)
 }

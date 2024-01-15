@@ -1,10 +1,12 @@
 package com.gucodero.data.common.util
 
+import com.google.gson.Gson
 import com.gucodero.domain.common.entity.DataResult
-import de.jensklingenberg.ktorfit.Response
 import kotlinx.coroutines.CoroutineDispatcher
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import okhttp3.ResponseBody
+import retrofit2.Response
 
 suspend fun <T : Any> safeApiCall(
     dispatcher: CoroutineDispatcher = Dispatchers.IO,
@@ -17,12 +19,13 @@ suspend fun <T : Any> safeApiCall(
                 DataResult.Success(result.body()!!)
             } else {
                 DataResult.Error(
-                    code = result.code.toString(),
-                    message = result.message,
+                    code = result.code().toString(),
+                    message = result.errorBody()?.stringSuspending(),
                     body = result.errorBody()?.toString()
                 )
             }
         } catch (ex: Exception) {
+            ex.printStackTrace()
             DataResult.Error(
                 message = ex.message,
                 cause = ex
@@ -30,3 +33,8 @@ suspend fun <T : Any> safeApiCall(
         }
     }
 }
+
+@Suppress("BlockingMethodInNonBlockingContext")
+suspend fun ResponseBody.stringSuspending() = try {
+    withContext(Dispatchers.IO) { string() }
+} catch (_: Exception){ null }

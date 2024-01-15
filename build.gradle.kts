@@ -7,8 +7,6 @@ plugins {
     alias(libs.plugins.google.ksp) apply false
     alias(libs.plugins.dagger.hilt) apply false
     alias(libs.plugins.kotlin.parcelize) apply false
-    alias(libs.plugins.kotlin.serialization) apply false
-    alias(libs.plugins.ktorfit) apply false
     alias(libs.plugins.navigation) apply false
 }
 true // Needed to make the Suppress annotation work for the plugins block

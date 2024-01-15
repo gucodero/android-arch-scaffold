@@ -5,6 +5,7 @@ plugins {
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.dagger.hilt)
     alias(libs.plugins.kotlin.parcelize)
+    alias(libs.plugins.navigation)
 }
 
 android {
@@ -30,17 +31,25 @@ android {
             )
         }
     }
+    composeOptions {
+        kotlinCompilerExtensionVersion = "1.5.4"
+    }
+    buildFeatures {
+        dataBinding = true
+        compose = true
+    }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
 dependencies {
+    implementation(kotlin("reflect"))
     implementation(project(":ui"))
     implementation(project(":domain"))
     implementation(project(":data"))
@@ -53,13 +62,32 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.ktorfit.lib)
-    implementation(libs.ktor.logging)
-    ksp(libs.ktorfit.ksp)
+    implementation(libs.androidx.fragment)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.gson)
     implementation(libs.dagger.hilt)
+    implementation(libs.navigation.fragment)
+    implementation(libs.navigation.ui)
+    implementation(libs.dagger.hilt.navigation)
     ksp(libs.dagger.hilt.compiler)
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
+    val composeBom = platform(libs.compose.bom)
+    implementation(composeBom)
+    androidTestImplementation(composeBom)
+    implementation(libs.compose.runtime)
+    implementation(libs.compose.material3)
+    implementation(libs.compose.ui.preview)
+    implementation(libs.compose.livedata)
+    implementation(libs.compose.activity)
+    implementation(libs.compose.constraint)
+    debugImplementation(libs.compose.ui.tooling)
+    androidTestImplementation(libs.compose.ui.test.junit)
+    debugImplementation(libs.compose.ui.test.manifest)
+    implementation(libs.compose.material3.windows.size)
 }

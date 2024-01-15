@@ -10,11 +10,8 @@ import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
 import com.gucodero.ui.core.fragment.AppDialog
 import com.gucodero.ui.core.util.appViewModels
-import kotlin.reflect.KClass
 
-sealed class AppComposeDialog(
-    isCancelable: Boolean = true
-): AppDialog(isCancelable) {
+sealed class AppComposeDialog: AppDialog() {
 
     open fun onInit() {}
 
@@ -37,15 +34,9 @@ sealed class AppComposeDialog(
     @Composable
     abstract fun ScreenPreview()
 
-    abstract class Stateless(
-        isCancelable: Boolean = true
-    ): AppComposeDialog(isCancelable)
+    abstract class Stateless: AppComposeDialog()
 
-    abstract class Stateful<V: ViewModel>(
-        override val clazz: KClass<V>,
-        override val storeOwner: Int? = null,
-        isCancelable: Boolean = true
-    ): AppComposeDialog(isCancelable), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: AppComposeDialog(), AppComposeStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

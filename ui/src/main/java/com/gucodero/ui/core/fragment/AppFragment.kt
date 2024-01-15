@@ -8,9 +8,7 @@ import androidx.navigation.NavDirections
 import com.gucodero.ui.core.util.navigate
 import com.gucodero.ui.core.util.onBackPressedCallback
 import com.gucodero.ui.core.util.setupActivityScaffold
-import dagger.hilt.android.AndroidEntryPoint
 
-@AndroidEntryPoint
 abstract class AppFragment: Fragment(), FragmentScaffold {
 
     private val onBackPressedCallback by onBackPressedCallback()

@@ -6,15 +6,12 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
-import kotlin.reflect.KClass
 import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
 import com.gucodero.ui.core.fragment.AppBottomSheet
 import com.gucodero.ui.core.util.appViewModels
 
-sealed class AppComposeBottomSheet(
-    isCancelable: Boolean = true
-): AppBottomSheet(isCancelable) {
+sealed class AppComposeBottomSheet: AppBottomSheet() {
 
     open fun onInit() {}
 
@@ -37,15 +34,9 @@ sealed class AppComposeBottomSheet(
     @Composable
     abstract fun ScreenPreview()
 
-    abstract class Stateless(
-        isCancelable: Boolean = true
-    ): AppComposeBottomSheet(isCancelable)
+    abstract class Stateless: AppComposeBottomSheet()
 
-    abstract class Stateful<V: ViewModel>(
-        override val clazz: KClass<V>,
-        override val storeOwner: Int? = null,
-        isCancelable: Boolean = true
-    ): AppComposeBottomSheet(isCancelable), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: AppComposeBottomSheet(), AppComposeStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

@@ -2,8 +2,6 @@
 plugins {
     alias(libs.plugins.android.library)
     alias(libs.plugins.org.jetbrains.kotlin.android)
-    alias(libs.plugins.google.ksp)
-    alias(libs.plugins.dagger.hilt)
 }
 
 android {
@@ -53,7 +51,6 @@ dependencies {
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.navigation.fragment)
     implementation(libs.navigation.ui)
-    implementation(libs.dagger.hilt.navigation)
     val composeBom = platform(libs.compose.bom)
     implementation(composeBom)
     androidTestImplementation(composeBom)
@@ -71,6 +68,4 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.test.ext.junit)
     androidTestImplementation(libs.espresso.core)
-    implementation(libs.dagger.hilt)
-    ksp(libs.dagger.hilt.compiler)
 }

@@ -10,7 +10,6 @@ import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
 import com.gucodero.ui.core.fragment.AppFragment
 import com.gucodero.ui.core.util.appViewModels
-import kotlin.reflect.KClass
 
 sealed class AppComposeFragment: AppFragment() {
 
@@ -37,10 +36,7 @@ sealed class AppComposeFragment: AppFragment() {
 
     abstract class Stateless: AppComposeFragment()
 
-    abstract class Stateful<V: ViewModel>(
-        override val clazz: KClass<V>,
-        override val storeOwner: Int? = null,
-    ): AppComposeFragment(), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: AppComposeFragment(), AppComposeStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

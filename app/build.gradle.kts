@@ -30,13 +30,16 @@ android {
             )
         }
     }
+    buildFeatures {
+        dataBinding = true
+    }
 
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -53,10 +56,13 @@ dependencies {
     implementation(libs.androidx.lifecycle.viewmodel)
     implementation(libs.androidx.lifecycle.runtime)
     implementation(libs.androidx.activity)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.ktorfit.lib)
-    implementation(libs.ktor.logging)
-    ksp(libs.ktorfit.ksp)
+    implementation(libs.androidx.fragment)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.gson)
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
     testImplementation(libs.junit)

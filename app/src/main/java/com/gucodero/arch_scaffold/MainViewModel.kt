@@ -29,7 +29,7 @@ class MainViewModel @Inject constructor(
         }
         result.ifSuccessful {
             MainUIEvent.People(
-                data = it
+                data = it.toString()
             ).send()
         }
     }

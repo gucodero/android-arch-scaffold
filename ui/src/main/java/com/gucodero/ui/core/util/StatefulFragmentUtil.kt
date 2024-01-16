@@ -4,7 +4,7 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
-import com.gucodero.ui.core.fragment.AppStatefulFragment
+import com.gucodero.ui.core.fragment.StatefulFragment
 import kotlin.reflect.KClass
 
 val notIsFragmentException = Exception("this not is fragment")
@@ -37,7 +37,7 @@ private class AppViewModelsLazy<V: ViewModel>(
 
 }
 
-fun <V: ViewModel> AppStatefulFragment<V>.appViewModels(): Lazy<V> {
+fun <V: ViewModel> StatefulFragment<V>.appViewModels(): Lazy<V> {
     if (this is Fragment) {
         val creator = getViewModelCreator()
         return AppViewModelsLazy(

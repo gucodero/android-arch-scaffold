@@ -8,7 +8,7 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.gucodero.ui.core.util.navigate
 import com.gucodero.ui.core.util.onBackPressedCallback
 
-abstract class AppBottomSheet: BottomSheetDialogFragment() {
+abstract class BaseBottomSheet: BottomSheetDialogFragment() {
 
     private val onBackPressedCallback by onBackPressedCallback()
 
@@ -19,12 +19,12 @@ abstract class AppBottomSheet: BottomSheetDialogFragment() {
 
     protected fun DialogFragment.show(){
         if(!isAdded){
-            this.show(this@AppBottomSheet.childFragmentManager, null)
+            this.show(this@BaseBottomSheet.childFragmentManager, null)
         }
     }
 
     fun NavDirections.navigate(){
-        this@AppBottomSheet.navigate(this)
+        this@BaseBottomSheet.navigate(this)
     }
 
 }

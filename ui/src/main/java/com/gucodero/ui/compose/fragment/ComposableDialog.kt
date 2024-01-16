@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
-import com.gucodero.ui.core.fragment.AppDialog
+import com.gucodero.ui.core.fragment.BaseDialog
 import com.gucodero.ui.core.util.appViewModels
 
-sealed class AppComposeDialog: AppDialog() {
+sealed class ComposableDialog: BaseDialog() {
 
     open fun onInit() {}
 
@@ -34,9 +34,9 @@ sealed class AppComposeDialog: AppDialog() {
     @Composable
     abstract fun ScreenPreview()
 
-    abstract class Stateless: AppComposeDialog()
+    abstract class Stateless: ComposableDialog()
 
-    abstract class Stateful<V: ViewModel>: AppComposeDialog(), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: ComposableDialog(), ComposableStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

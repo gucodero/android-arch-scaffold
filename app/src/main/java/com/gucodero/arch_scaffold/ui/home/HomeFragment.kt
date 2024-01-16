@@ -16,7 +16,7 @@ import androidx.compose.ui.unit.sp
 import androidx.constraintlayout.compose.ConstraintLayout
 import com.gucodero.arch_scaffold.R
 import com.gucodero.arch_scaffold.ui.home.dialog.PeopleDialog
-import com.gucodero.ui.compose.fragment.AppComposeFragment
+import com.gucodero.ui.compose.fragment.ComposableFragment
 import com.gucodero.ui.compose.util.OnUiEvent
 import com.gucodero.ui.compose.util.uiState
 import com.gucodero.ui.core.util.fullscreen
@@ -25,7 +25,7 @@ import com.gucodero.ui.core.util.viewModelCreator
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
-class HomeFragment: AppComposeFragment.Stateful<HomeViewModel>() {
+class HomeFragment: ComposableFragment.Stateful<HomeViewModel>() {
 
     override fun getViewModelCreator() = viewModelCreator()
 

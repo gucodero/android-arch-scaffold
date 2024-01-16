@@ -9,7 +9,7 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.platform.LocalInspectionMode
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModel
-import com.gucodero.ui.compose.fragment.AppComposeStatefulFragment
+import com.gucodero.ui.compose.fragment.ComposableStatefulFragment
 import com.gucodero.ui.core.lifecycle.StatefulViewModel
 import com.gucodero.ui.core.lifecycle.StatelessViewModel
 import com.gucodero.ui.core.lifecycle.base.ViewModelLoadable
@@ -18,7 +18,7 @@ import com.gucodero.ui.core.util.notIsFragmentException
 import kotlinx.coroutines.launch
 
 @Composable
-inline fun <reified S, V: StatefulViewModel<S, *>> AppComposeStatefulFragment<V>.uiState(): State<S> {
+inline fun <reified S, V: StatefulViewModel<S, *>> ComposableStatefulFragment<V>.uiState(): State<S> {
     return if (LocalInspectionMode.current) {
         uiStatePreview()
     } else {
@@ -27,7 +27,7 @@ inline fun <reified S, V: StatefulViewModel<S, *>> AppComposeStatefulFragment<V>
 }
 
 @Composable
-fun <S: Any, V: StatefulViewModel<S, *>> AppComposeStatefulFragment<V>.PreviewUiState(
+fun <S: Any, V: StatefulViewModel<S, *>> ComposableStatefulFragment<V>.PreviewUiState(
     uiState: S,
     content: @Composable () -> Unit
 ) {
@@ -39,7 +39,7 @@ fun <S: Any, V: StatefulViewModel<S, *>> AppComposeStatefulFragment<V>.PreviewUi
 }
 
 @Composable
-fun <E, V: StatelessViewModel<E>> AppComposeStatefulFragment<V>.OnUiEvent(
+fun <E, V: StatelessViewModel<E>> ComposableStatefulFragment<V>.OnUiEvent(
     content: (uiEvent: E) -> Unit
 ) {
     if (!LocalInspectionMode.current) {
@@ -52,7 +52,7 @@ fun <E, V: StatelessViewModel<E>> AppComposeStatefulFragment<V>.OnUiEvent(
     }
 }
 
-fun <V: ViewModel> AppComposeStatefulFragment<V>.connectLoadingEvent() {
+fun <V: ViewModel> ComposableStatefulFragment<V>.connectLoadingEvent() {
     if (this is Fragment) {
         viewModel.let {
             if (it is ViewModelLoadable) {

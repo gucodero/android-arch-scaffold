@@ -8,11 +8,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
-import com.gucodero.ui.compose.fragment.AppComposeDialog
+import com.gucodero.ui.compose.fragment.ComposableDialog
 import com.gucodero.ui.core.util.argument
 import com.gucodero.ui.core.util.putArgs
 
-class PeopleDialog: AppComposeDialog.Stateless() {
+class PeopleDialog: ComposableDialog.Stateless() {
 
     private val peopleString: String by argument(key = "peopleString")
 

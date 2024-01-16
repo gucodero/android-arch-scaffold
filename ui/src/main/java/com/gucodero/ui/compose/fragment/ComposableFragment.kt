@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
-import com.gucodero.ui.core.fragment.AppFragment
+import com.gucodero.ui.core.fragment.BaseFragment
 import com.gucodero.ui.core.util.appViewModels
 
-sealed class AppComposeFragment: AppFragment() {
+sealed class ComposableFragment: BaseFragment() {
 
     open fun onInit() {}
 
@@ -34,9 +34,9 @@ sealed class AppComposeFragment: AppFragment() {
     @Composable
     abstract fun ScreenPreview()
 
-    abstract class Stateless: AppComposeFragment()
+    abstract class Stateless: ComposableFragment()
 
-    abstract class Stateful<V: ViewModel>: AppComposeFragment(), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: ComposableFragment(), ComposableStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

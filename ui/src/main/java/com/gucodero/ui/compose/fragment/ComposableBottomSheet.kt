@@ -8,10 +8,10 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.platform.ComposeView
 import androidx.lifecycle.ViewModel
 import com.gucodero.ui.compose.util.connectLoadingEvent
-import com.gucodero.ui.core.fragment.AppBottomSheet
+import com.gucodero.ui.core.fragment.BaseBottomSheet
 import com.gucodero.ui.core.util.appViewModels
 
-sealed class AppComposeBottomSheet: AppBottomSheet() {
+sealed class ComposableBottomSheet: BaseBottomSheet() {
 
     open fun onInit() {}
 
@@ -34,9 +34,9 @@ sealed class AppComposeBottomSheet: AppBottomSheet() {
     @Composable
     abstract fun ScreenPreview()
 
-    abstract class Stateless: AppComposeBottomSheet()
+    abstract class Stateless: ComposableBottomSheet()
 
-    abstract class Stateful<V: ViewModel>: AppComposeBottomSheet(), AppComposeStatefulFragment<V> {
+    abstract class Stateful<V: ViewModel>: ComposableBottomSheet(), ComposableStatefulFragment<V> {
 
         override val viewModel: V by appViewModels()
 

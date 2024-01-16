@@ -41,7 +41,7 @@ android {
 }
 
 dependencies {
-    implementation(kotlin("reflect"))
+
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)

@@ -3,30 +3,34 @@ package com.gucodero.ui.core.fragment
 import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.DialogFragment
-import androidx.fragment.app.Fragment
 import androidx.navigation.NavDirections
 import com.gucodero.ui.core.util.navigate
 import com.gucodero.ui.core.util.onBackPressedCallback
-import com.gucodero.ui.core.util.setupActivityScaffold
 
-abstract class AppFragment: Fragment(), FragmentScaffold {
+abstract class BaseDialog: DialogFragment() {
 
     private val onBackPressedCallback by onBackPressedCallback()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        setupActivityScaffold()
         onBackPressedCallback?.isEnabled = true
     }
 
-    protected fun DialogFragment.show(tag: String? = null){
+    /**
+     * Muestra el Diálogo.
+     */
+    protected fun DialogFragment.show(){
         if(!isAdded){
-            this.show(this@AppFragment.childFragmentManager, tag)
+            this.show(this@BaseDialog.childFragmentManager, null)
         }
     }
 
+    /**
+     * Extensión de [NavDirections] que permite navegar utilizando las configuraciones de navegación
+     * definidas en el Diálogo actual.
+     */
     fun NavDirections.navigate(){
-        this@AppFragment.navigate(this)
+        this@BaseDialog.navigate(this)
     }
 
 }

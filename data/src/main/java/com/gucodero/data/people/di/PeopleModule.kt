@@ -5,12 +5,11 @@ import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
 import dagger.hilt.components.SingletonComponent
-import de.jensklingenberg.ktorfit.Ktorfit
-import io.ktor.client.plugins.logging.ANDROID
-import io.ktor.client.plugins.logging.LogLevel
-import io.ktor.client.plugins.logging.Logger
-import io.ktor.client.plugins.logging.Logging
-import io.ktor.client.plugins.logging.SIMPLE
+import okhttp3.OkHttpClient
+import okhttp3.logging.HttpLoggingInterceptor
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
+import retrofit2.create
 
 @Module
 @InstallIn(SingletonComponent::class)
@@ -18,14 +17,17 @@ class PeopleModule {
 
     @Provides
     fun providePeopleApi(): PeopleApi {
-        return Ktorfit.Builder()
-            .httpClient {
-                install(Logging) {
-                    logger = Logger.SIMPLE
-                    level = LogLevel.ALL
-                }
-            }
+        return Retrofit.Builder()
             .baseUrl("https://swapi.dev/api/")
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(
+                OkHttpClient.Builder()
+                    .addInterceptor(
+                        HttpLoggingInterceptor()
+                            .setLevel(HttpLoggingInterceptor.Level.BODY)
+                    )
+                    .build()
+            )
             .build()
             .create()
     }

@@ -4,8 +4,6 @@ plugins {
     alias(libs.plugins.org.jetbrains.kotlin.android)
     alias(libs.plugins.google.ksp)
     alias(libs.plugins.dagger.hilt)
-    alias(libs.plugins.kotlin.serialization)
-    alias(libs.plugins.ktorfit)
 }
 
 android {
@@ -29,11 +27,11 @@ android {
         }
     }
     compileOptions {
-        sourceCompatibility = JavaVersion.VERSION_1_8
-        targetCompatibility = JavaVersion.VERSION_1_8
+        sourceCompatibility = JavaVersion.VERSION_11
+        targetCompatibility = JavaVersion.VERSION_11
     }
     kotlinOptions {
-        jvmTarget = "1.8"
+        jvmTarget = JavaVersion.VERSION_11.toString()
     }
 }
 
@@ -42,16 +40,12 @@ dependencies {
     implementation(libs.core.ktx)
     implementation(libs.appcompat)
     implementation(libs.material)
-//    implementation(libs.retrofit)
-//    implementation(libs.retrofit)
-//    implementation(libs.retrofit.gson.converter)
-//    implementation(libs.okhttp)
-//    implementation(libs.okhttp.logging.interceptor)
-//    implementation(libs.gson)
-    implementation(libs.kotlinx.serialization.json)
-    implementation(libs.ktorfit.lib)
-    implementation(libs.ktor.logging)
-    ksp(libs.ktorfit.ksp)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit)
+    implementation(libs.retrofit.gson.converter)
+    implementation(libs.okhttp)
+    implementation(libs.okhttp.logging.interceptor)
+    implementation(libs.gson)
     implementation(libs.dagger.hilt)
     ksp(libs.dagger.hilt.compiler)
     testImplementation(libs.junit)
